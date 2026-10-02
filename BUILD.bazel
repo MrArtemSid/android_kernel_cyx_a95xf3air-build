@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: GPL-2.0
+
+load("//build/kernel/kleaf:kernel.bzl", "kernel_build_config")
+load("//vendor/amlogic/kernel:kernel_platform.bzl", "amlogic_kernel_platform")
+load("//vendor/amlogic/gpu-modules/bifrost:defs.bzl", "mali_bifrost_module")
+load("//vendor/amlogic/media-modules:defs.bzl", "media_modules_module")
+load("//vendor/amlogic/mtk-drivers/mt7663u/wlan_driver:defs.bzl", "mt7668s_module")
+load(":modules.bzl", "A95XF3AIR_MODULES", "COMMON_DRIVERS_MODULES", "GKI_MODULES_REMOVE", "MODULES_OUT_REMOVE", "SYSTEM_DLKM_MODULES")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+mt7668s_module(name = "wlan_mt7668s", kernel_build = ":a95xf3air")
+
+mali_bifrost_module(name = "gpu_bifrost", kernel_build = ":a95xf3air")
+
+media_modules_module(name = "media", kernel_build = ":a95xf3air")
+
+amlogic_kernel_platform(
+    name = "a95xf3air",
+    dtb_outs = [
+        "sm1_s905x3_a95xf3air.dtb",
+        "android_overlay_dt.dtbo",
+    ],
+    module_outs = [m for m in A95XF3AIR_MODULES + COMMON_DRIVERS_MODULES + SYSTEM_DLKM_MODULES if m not in MODULES_OUT_REMOVE],
+    gki_modules_remove = GKI_MODULES_REMOVE + SYSTEM_DLKM_MODULES,
+    system_dlkm_modules_load = ["kernel/" + m for m in SYSTEM_DLKM_MODULES] + [""],
+    build_config = ":a95xf3air_build_config",
+    kmi_symbol_list = "//vendor/amlogic/kernel:android/abi_gki_aarch64_amlogic",
+    kernel_modules = [
+        ":wlan_mt7668s",
+        ":gpu_bifrost",
+        ":media",
+    ],
+)
+
+kernel_build_config(
+    name = "a95xf3air_build_config",
+    srcs = [
+        # do not sort
+        "//vendor/amlogic/kernel:set_kernel_dir_build_config",
+        "//vendor/amlogic/kernel:build.config.gki.aarch64",
+        "build.config.a95xf3air",
+    ],
+)
