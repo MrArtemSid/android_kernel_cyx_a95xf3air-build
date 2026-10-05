@@ -82,7 +82,6 @@ COMMON_DRIVERS_MODULES = [
     "common_drivers/drivers/net/phy/amlogic-inphy.ko",
     "common_drivers/drivers/net/phy/amlogic-maxio.ko",
     "common_drivers/drivers/net/phy/amlogic-realtek.ko",
-    "common_drivers/drivers/openvfd/openvfd.ko",
     "common_drivers/drivers/pci/controller/amlogic-pcie.ko",
     "common_drivers/drivers/rtc/amlogic-rtc.ko",
     "common_drivers/drivers/seckey/amlogic-seckey.ko",

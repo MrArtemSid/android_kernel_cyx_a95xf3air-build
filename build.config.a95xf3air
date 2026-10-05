@@ -1,9 +1,8 @@
 export COMMON_DRIVERS_DIR=common_drivers
 
-# Mali Bifrost GPU driver version. The S905X3 has a Mali-G31 like the VIM3L.
-# GPU_TYPE is only a label - the bifrost Makefile never reads it. Override
-# its default r25p0.
-export GPU_DRV_VERSION=r44p1
+# Mali Bifrost GPU driver version (S905X3 = dvalin/G31), matching the current
+# kvim3l build configuration.
+export GPU_DRV_VERSION=r47p0
 export GPU_TYPE=dvalin
 export GPU_ARCH=bifrost
 
@@ -23,8 +22,8 @@ function pre_defconfig_cmds() {
 			${ROOT_DIR}/${KERNEL_DIR}/../common_drivers/arch/arm64/configs/amlogic_gki.10 \
 			${ROOT_DIR}/${KERNEL_DIR}/../common_drivers/arch/arm64/configs/amlogic_gki.debug \
 			${ROOT_DIR}/${KERNEL_DIR}/../common_drivers/arch/arm64/configs/amlogic_upgrade_u.defconfig \
+			${ROOT_DIR}/${KERNEL_DIR}/../common_drivers/arch/arm64/configs/amlogic_common.defconfig \
 			${ROOT_DIR}/${KERNEL_DIR}/../common_drivers/arch/arm64/configs/amlogic_g12.fragment \
-			${ROOT_DIR}/${KERNEL_DIR}/../common_drivers/arch/arm64/configs/a95xf3air_defconfig \
 			${temp_file}
 
 	rm ${temp_file}
