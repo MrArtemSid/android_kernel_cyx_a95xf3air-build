@@ -4,17 +4,17 @@ load("//build/kernel/kleaf:kernel.bzl", "kernel_build_config")
 load("//vendor/amlogic/kernel:kernel_platform.bzl", "amlogic_kernel_platform")
 load("//vendor/amlogic/gpu-modules/bifrost:defs.bzl", "mali_bifrost_module")
 load("//vendor/amlogic/media-modules:defs.bzl", "media_modules_module")
-load("//vendor/amlogic/mtk-drivers/mt7663u/wlan_driver:defs.bzl", "mt7668s_module")
 load("//vendor/amlogic/openvfd:defs.bzl", "openvfd_module")
+load("//vendor/mediatek/mt7668:defs.bzl", "mt7668_module")
 load(":modules.bzl", "A95XF3AIR_MODULES", "COMMON_DRIVERS_MODULES", "GKI_MODULES_REMOVE", "MODULES_OUT_REMOVE", "SYSTEM_DLKM_MODULES")
 
 package(
     default_visibility = ["//visibility:public"],
 )
 
-mt7668s_module(name = "wlan_mt7668s", kernel_build = ":a95xf3air")
-
 openvfd_module(name = "openvfd", kernel_build = ":a95xf3air")
+
+mt7668_module(name = "mt7668", kernel_build = ":a95xf3air")
 
 mali_bifrost_module(name = "gpu_bifrost", kernel_build = ":a95xf3air")
 
@@ -32,7 +32,7 @@ amlogic_kernel_platform(
     build_config = ":a95xf3air_build_config",
     kmi_symbol_list = "//vendor/amlogic/kernel:android/abi_gki_aarch64_amlogic",
     kernel_modules = [
-        ":wlan_mt7668s",
+        ":mt7668",
         ":openvfd",
         ":gpu_bifrost",
         ":media",
