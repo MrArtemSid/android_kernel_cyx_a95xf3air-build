@@ -3,6 +3,7 @@
 A95XF3AIR_MODULES = [
     # keep sorted
     "arch/arm64/crypto/sha1-ce.ko",
+    "drivers/bluetooth/btmtksdio.ko",
     "drivers/clk/clk-scmi.ko",
     "drivers/hid/hid-apple.ko",
     "drivers/hid/hid-elecom.ko",
