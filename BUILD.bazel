@@ -2,6 +2,7 @@
 
 load("//build/kernel/kleaf:kernel.bzl", "kernel_build_config")
 load("//vendor/amlogic/kernel:kernel_platform.bzl", "amlogic_kernel_platform")
+load("//vendor/amlogic/bt-modules:defs.bzl", "btmtk_sdio_module")
 load("//vendor/amlogic/gpu-modules/bifrost:defs.bzl", "mali_bifrost_module")
 load("//vendor/amlogic/media-modules:defs.bzl", "media_modules_module")
 load("//vendor/amlogic/openvfd:defs.bzl", "openvfd_module")
@@ -15,6 +16,8 @@ package(
 openvfd_module(name = "openvfd", kernel_build = ":a95xf3air")
 
 mt7668_module(name = "mt7668", kernel_build = ":a95xf3air")
+
+btmtk_sdio_module(name = "btmtksdio", kernel_build = ":a95xf3air")
 
 mali_bifrost_module(name = "gpu_bifrost", kernel_build = ":a95xf3air")
 
@@ -33,6 +36,7 @@ amlogic_kernel_platform(
     kmi_symbol_list = "//vendor/amlogic/kernel:android/abi_gki_aarch64_amlogic",
     kernel_modules = [
         ":mt7668",
+        ":btmtksdio",
         ":openvfd",
         ":gpu_bifrost",
         ":media",

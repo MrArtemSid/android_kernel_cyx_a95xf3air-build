@@ -3,7 +3,6 @@
 A95XF3AIR_MODULES = [
     # keep sorted
     "arch/arm64/crypto/sha1-ce.ko",
-    "drivers/bluetooth/btmtksdio.ko",
     "drivers/clk/clk-scmi.ko",
     "drivers/hid/hid-apple.ko",
     "drivers/hid/hid-elecom.ko",
@@ -128,7 +127,6 @@ SYSTEM_DLKM_MODULES = [
     "drivers/net/usb/cdc_ncm.ko",
     "drivers/net/usb/r8153_ecm.ko",
     "lib/crypto/libarc4.ko",
-    "net/bluetooth/bluetooth.ko",
 ]
 
 GKI_MODULES_REMOVE = [

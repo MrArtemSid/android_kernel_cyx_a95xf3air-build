@@ -14,7 +14,7 @@ function pre_defconfig_cmds() {
 	KCONFIG_DEFCONFIG=${KERNEL_DIR}/arch/arm64/configs/${DEFCONFIG}
 	local temp_file=`mktemp /tmp/config.XXXXXXXXXXXX`
 
-	echo "CONFIG_BT_MTKSDIO=m" > ${temp_file}
+	echo "" > ${temp_file}
 
 	KCONFIG_CONFIG=${KCONFIG_DEFCONFIG} ${ROOT_DIR}/${KERNEL_DIR}/scripts/kconfig/merge_config.sh -m -r \
 			${ROOT_DIR}/${KERNEL_DIR}/arch/arm64/configs/gki_defconfig \
